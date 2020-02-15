@@ -8,7 +8,7 @@ import static com.androidgame.state.StateHandler.BLOCK_SIZE;
 
 public class ChunkGenerator {
 
-    public static int chunkCalculator;
+    public static int chunkCalculator = 0;
     private  int y;
     private ChunkReader chunk;
     private Random rand = new Random();

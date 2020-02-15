@@ -27,20 +27,20 @@ public enum BackgroundBlock {
     SPLASH_YELLOW(new Texture(Gdx.files.internal("images/background/yellow_splash.png"),true),
             PlayerColor.PLAYER_YELLOW,true);
 
-    public Texture background;
-    public PlayerColor playerColor;
-    Boolean changeable;
+    final public Texture background;
+    final public PlayerColor playerColor;
+    final public Boolean changeable;
 
     BackgroundBlock(Texture background,PlayerColor playerColor,boolean changeable){
         this.background = background;
         this.playerColor = playerColor;
         this.changeable = changeable;
 
-        background.setFilter(Texture.TextureFilter.MipMapLinearNearest, Texture.TextureFilter.Nearest);
+       // background.setFilter(Texture.TextureFilter.MipMapLinearNearest, Texture.TextureFilter.Nearest);
     }
 
    public PlayerColor changeColor(){
-        if (changeable == true){
+        if (changeable){
             return playerColor;
         }
         return null;

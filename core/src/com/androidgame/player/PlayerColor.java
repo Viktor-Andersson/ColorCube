@@ -9,7 +9,7 @@ public enum PlayerColor {
     PLAYER_YELLOW(new Texture("images/player/yellow_brick.png")),
     NONE(new Texture("images/player/red_brick.png"));
 
-    public Texture texture;
+    final public Texture texture;
 
     PlayerColor(Texture texture){
         this.texture = texture;

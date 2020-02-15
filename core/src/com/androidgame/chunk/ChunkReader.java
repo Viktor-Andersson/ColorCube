@@ -3,7 +3,7 @@ package com.androidgame.chunk;
 /**
  * A com.androidgame.chunk is a piece of the game map with a 9x3 grid filled with BackgroundBlocks.
  *
- * Each com.androidgame.chunk can be loaded from a com.androidgame.chunk.data file and has the following format:
+ * Each com.androidgame.chunk can be loaded from a chunk.data file and has the following format:
  *
  * BackgroundBlock|BackgroundBlock|BackgroundBlock|
  * BackgroundBlock|BackgroundBlock|BackgroundBlock|
@@ -15,8 +15,8 @@ package com.androidgame.chunk;
  * BackgroundBlock|BackgroundBlock|BackgroundBlock|
  * BackgroundBlock|BackgroundBlock|BackgroundBlock|
  *
- * To add a com.androidgame.chunk simply create a new com.androidgame.chunk.data file and save it in  android/assets/data
- * name the file com.androidgame.chunk(NextNumberThatDoesNotExist).data
+ * To add a chunk simply create a new com.androidgame.chunk.data file and save it in  android/assets/data
+ * name the file chunk(NextNumberThatDoesNotExist).data
  * */
 
 import com.badlogic.gdx.Gdx;
@@ -29,19 +29,19 @@ import java.io.Reader;
 
 public class ChunkReader {
     //Numbers of rows in a com.androidgame.chunk
-    public static int ROWS = 9;
+    public static final int ROWS = 9;
 
-    private static int LEFT_BLOCK = 0;
-    private static int MIDDLE_BLOCK = 1;
-    private static int RIGHT_BLOCK = 2;
+    private static final int LEFT_BLOCK = 0;
+    private static final int MIDDLE_BLOCK = 1;
+    private static final int RIGHT_BLOCK = 2;
 
-    private static int GRID_WIDTH = 3;
-    private static int GRID_HEIGHT = ROWS;
+    private static final int GRID_WIDTH = 3;
+    private static final int GRID_HEIGHT = ROWS;
 
     private static final String PATH = "data/";
     public static final int NUMBER_OF_CHUNKS = 26;
 
-    BackgroundBlock[][][] chunkArray = new BackgroundBlock[NUMBER_OF_CHUNKS][GRID_HEIGHT][GRID_WIDTH];
+    private BackgroundBlock[][][] chunkArray = new BackgroundBlock[NUMBER_OF_CHUNKS][GRID_HEIGHT][GRID_WIDTH];
 
     public ChunkReader(){
 
@@ -62,12 +62,12 @@ public class ChunkReader {
 
         try {
 
-            Reader reader = chunkFile.reader(100);
+            BufferedReader reader = chunkFile.reader(100);
             int lineCounter = 0;
-            String line = "";
+            String line;
 
             //Reads the file line by line and stops when there is nothing more to read
-            while ((line = ((BufferedReader) reader).readLine()) != null) {
+            while ((line = reader.readLine()) != null) {
                 String[] data = line.split("\\|");
 
                 chunkGrid[lineCounter][LEFT_BLOCK] = BackgroundBlock.valueOf(data[LEFT_BLOCK]);
@@ -83,11 +83,10 @@ public class ChunkReader {
             }
 
         } catch (FileNotFoundException e) {
-            System.out.println("File " + chunkName + " could not be found at path: " + PATH );
+            System.out.println("File " + chunkName + " could not be found at path: " + PATH + " ." +e);
+
         } catch (IOException e) {
-            System.out.println("Something went wrong when reading the file: " + e.toString());
-        } catch (Exception e) {
-            System.out.println(e.toString());
+            System.out.println("Something went wrong when reading the file: " + e);
         }
 
         return chunkGrid;

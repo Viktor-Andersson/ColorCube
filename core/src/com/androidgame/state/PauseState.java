@@ -24,8 +24,6 @@ public class PauseState extends State {
     private StateHandler stateHandler;
     private Sprite spriteText;
     private Sprite playButton;
-    private Sprite highScore;
-    //   Sprite scoreS;
 
     private Score hScore;
     private OrthographicCamera camera;
@@ -47,9 +45,10 @@ public class PauseState extends State {
         playButton = new Sprite(play);
 
         //Places playbutton in center
-        final int playButtonWidth = BLOCK_SIZE/100 * 140;
-        playButton.setSize(playButtonWidth, BLOCK_SIZE/100 * 140 );
-        playButton.setPosition((BLOCK_SIZE*1.5f) - playButtonWidth/2, BLOCK_SIZE/3 * 5);
+        final int playButtonSize = BLOCK_SIZE/100 * 140;
+
+        playButton.setSize(playButtonSize, playButtonSize );
+        playButton.setPosition((BLOCK_SIZE*1.5f) -playButtonSize/2, BLOCK_SIZE/3 * 5);
 
 
         camera = new OrthographicCamera(WIDTH, HEIGHT);
@@ -61,14 +60,14 @@ public class PauseState extends State {
 
 
     @Override
-    protected void userInput() {
+    public void userInput() {
         /*
         *  Checks if the com.androidgame.player presses the play button
         * */
 
         if(Gdx.input.justTouched()){
-            int y  = (Gdx.input.getY() - HEIGHT)*-1;
-            int x  = Gdx.input.getX();
+           final int y  = (Gdx.input.getY() - HEIGHT)*-1;
+           final int x  = Gdx.input.getX();
 
             if((y > playButton.getY() && y < playButton.getY() + playButton.getHeight() &&
                     (x > playButton.getX()) && x < playButton.getX()+playButton.getWidth())){
@@ -76,7 +75,7 @@ public class PauseState extends State {
                 //Dispose all textures before starting new game session
                 dispose();
                 stateHandler.setCurrentState(new PlayState(stateHandler));
-            };
+            }
 
 
         }

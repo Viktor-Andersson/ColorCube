@@ -13,8 +13,8 @@ import static com.androidgame.state.StateHandler.HEIGHT;
 
 public class Score {
 
-    List<ScoreNumber> numberList;
-    int currentScore = 0;
+    private List<ScoreNumber> numberList;
+    private int currentScore = 0;
 
     public void setCurrentScore(int currentSCore) {
         this.currentScore = currentSCore;
@@ -35,15 +35,15 @@ public class Score {
 
     public void showScore(Batch batch, int playerPos){
 
-        int score = currentScore;
-        int one = score % 10;
-        int hundred = score /100;
-        int ten = (score - hundred * 100) / 10;
+       final int score = currentScore;
+       final int one = score % 10;
+       final int hundred = score /100;
+       final int ten = (score - hundred * 100) / 10;
 
-        int numberWidth = BLOCK_SIZE/2;
-        int numberHeight = BLOCK_SIZE/2;
+       final int numberWidth = BLOCK_SIZE/2;
+       final int numberHeight = BLOCK_SIZE/2;
 
-        int positionHeight = HEIGHT - numberHeight - PLAYER_START_POSITION;
+       final int positionHeight = HEIGHT - numberHeight - PLAYER_START_POSITION;
 
 
         if (ten > 0 && hundred <= 0){
@@ -84,8 +84,6 @@ public class Score {
             scoreOne.setPosition(0,  playerPos + positionHeight);
             scoreOne.draw(batch);
 
-
-           // batch.draw(numberList.get(one).image, * 20,playerPos + BLOCK_SIZE/3 * 12);
         }
     }
 
@@ -94,15 +92,15 @@ public class Score {
     public void showHighScore(Batch batch){
 
         Preferences prefs = Gdx.app.getPreferences("game preferences");
-        int highScore = prefs.getInteger("highscore");
-        int one = highScore % 10;
-        int hundred = highScore / 100;
-        int ten = (highScore - hundred * 100) / 10;
+       final int highScore = prefs.getInteger("highscore");
+       final int one = highScore % 10;
+       final int hundred = highScore / 100;
+       final int ten = (highScore - hundred * 100) / 10;
 
-        int numberWidth = BLOCK_SIZE/2;
-        int numberHeight = BLOCK_SIZE/2;
+       final int numberWidth = BLOCK_SIZE/2;
+       final int numberHeight = BLOCK_SIZE/2;
 
-        int positionHeight = BLOCK_SIZE/100 * 150;
+       final int positionHeight = BLOCK_SIZE/100 * 150;
 
 
         if (ten > 0  && hundred <= 0){

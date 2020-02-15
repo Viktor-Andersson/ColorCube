@@ -6,7 +6,7 @@ import static com.androidgame.state.StateHandler.BLOCK_SIZE;
 
 public class Player {
 
-    static int SPEED = 15;
+    private final static int SPEED = 15;
 
     private int xPos;
     private int yPos;

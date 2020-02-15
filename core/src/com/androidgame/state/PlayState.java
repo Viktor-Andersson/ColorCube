@@ -33,9 +33,9 @@ public class PlayState extends State{
     private int distToBottom;
     private boolean play = true;
     private Score score;
-    Sound sound = Gdx.audio.newSound(Gdx.files.internal("sounds/change.mp3"));
+    private Sound sound = Gdx.audio.newSound(Gdx.files.internal("sounds/change.mp3"));
 
-    public static int PLAYER_START_POSITION = BLOCK_SIZE;
+    public static final int PLAYER_START_POSITION = BLOCK_SIZE;
 
     public PlayState(StateHandler stateHandler) {
         player = new Player(PLAYER_START_POSITION, 0);
@@ -55,12 +55,12 @@ public class PlayState extends State{
     public void userInput() {
     /*
     * Checks if the right or left side of the screen has been pressed and
-    * moves the com.androidgame.player accordingly
+    * moves the player accordingly
     * */
 
         if (Gdx.input.justTouched()) {
 
-            int touchX = Gdx.input.getX();
+           final int touchX = Gdx.input.getX();
 
             if (touchX > WIDTH/2 && player.getXPos() <= BLOCK_SIZE) {
                 player.moveRight();
@@ -95,7 +95,7 @@ public class PlayState extends State{
         } else {
             play = false;
 
-            //Update high com.androidgame.score if the current com.androidgame.score is greater
+            //Update high score if the current com.androidgame.score is greater
             Preferences prefs = Gdx.app.getPreferences("game preferences");
             int highScore = prefs.getInteger("highscore");
 
@@ -121,14 +121,14 @@ public class PlayState extends State{
 
     public boolean collisionChunk() {
         /*
-         * Checks which generator the com.androidgame.player is colliding with and returns the current colliding block
+         * Checks which generator the player is colliding with and returns the current colliding block
          */
 
         BackgroundBlock b1;
         BackgroundBlock b2;
 
-        int playerY = player.getYPos();
-        int playerX = player.getXPos();
+        final int playerY = player.getYPos();
+        final int playerX = player.getXPos();
 
         if (playerY + BLOCK_SIZE > generator1.getY() &&
                 playerY +BLOCK_SIZE < generator1.getY() + BLOCK_SIZE * ROWS) {
@@ -150,7 +150,7 @@ public class PlayState extends State{
 
     private boolean collisionBackground(BackgroundBlock b) {
         /*
-        * Returns false if the com.androidgame.player collides with a color that does not match its own
+        * Returns false if the player collides with a color that does not match its own
          */
 
         if (b != BackgroundBlock.WHITE && b != null) {
@@ -161,10 +161,7 @@ public class PlayState extends State{
                 sound.play(1.0f);
             }
 
-            if (b.playerColor != player.getPlayerColor()) {
-
-                return false;
-            }
+            return b.playerColor == player.getPlayerColor();
 
         }
         return true;
@@ -180,6 +177,8 @@ public class PlayState extends State{
         generator2.render(batch);
         score.showScore(batch,player.getYPos());
         batch.draw(player.getPlayerColor().texture, player.getXPos(), player.getYPos(),BLOCK_SIZE, BLOCK_SIZE);
+
+        //Fix the center of camera 2BLOCKS above the player
         camera.position.y = player.getYPos() + BLOCK_SIZE * 2;
         camera.update();
         batch.setProjectionMatrix(camera.combined);

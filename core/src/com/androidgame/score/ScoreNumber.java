@@ -28,7 +28,7 @@ public enum ScoreNumber {
     MEIGHT(new Texture(Gdx.files.internal("images/menu/numbers/menu-eight.png"))),
     MNINE(new Texture(Gdx.files.internal("images/menu/numbers/menu-nine.png")));
 
-    Texture image;
+    final public Texture image;
 
    ScoreNumber (Texture image){
         this.image = image;

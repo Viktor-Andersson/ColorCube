@@ -6,7 +6,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class StateHandler extends ApplicationAdapter {
-    SpriteBatch batch;
+    private SpriteBatch batch;
 
     private State currentState;
 
@@ -17,8 +17,8 @@ public class StateHandler extends ApplicationAdapter {
         WIDTH = Gdx.graphics.getWidth();
         HEIGHT = Gdx.graphics.getHeight();
         BLOCK_SIZE = WIDTH / 3;
-        PauseState pauseState = new PauseState(this);
-        currentState = pauseState;
+        currentState = new PauseState(this);
+
 
         batch = new SpriteBatch();
 
