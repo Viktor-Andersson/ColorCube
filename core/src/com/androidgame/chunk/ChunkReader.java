@@ -1,9 +1,9 @@
 package com.androidgame.chunk;
 
 /**
- * A com.androidgame.chunk is a piece of the game map with a 9x3 grid filled with BackgroundBlocks.
+ * A chunk is a piece of the game map with a 9x3 grid filled with BackgroundBlocks.
  *
- * Each com.androidgame.chunk can be loaded from a chunk.data file and has the following format:
+ * Each chunk can be loaded from a chunk.data file and has the following format:
  *
  * BackgroundBlock|BackgroundBlock|BackgroundBlock|
  * BackgroundBlock|BackgroundBlock|BackgroundBlock|
@@ -15,17 +15,15 @@ package com.androidgame.chunk;
  * BackgroundBlock|BackgroundBlock|BackgroundBlock|
  * BackgroundBlock|BackgroundBlock|BackgroundBlock|
  *
- * To add a chunk simply create a new com.androidgame.chunk.data file and save it in  android/assets/data
+ * To add a chunk simply create a new chunk.data file and save it in  android/assets/data
  * name the file chunk(NextNumberThatDoesNotExist).data
  * */
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
-
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.Reader;
 
 public class ChunkReader {
     //Numbers of rows in a com.androidgame.chunk

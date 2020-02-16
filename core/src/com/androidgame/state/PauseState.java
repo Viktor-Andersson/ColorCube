@@ -50,7 +50,7 @@ public class PauseState extends State {
         playButton.setSize(playButtonSize, playButtonSize );
         playButton.setPosition((BLOCK_SIZE*1.5f) -playButtonSize/2, BLOCK_SIZE/3 * 5);
 
-
+        //Set the camera to focus on the middle of the screen
         camera = new OrthographicCamera(WIDTH, HEIGHT);
         camera.translate(camera.viewportWidth/2,camera.viewportHeight/2);
 
@@ -62,7 +62,7 @@ public class PauseState extends State {
     @Override
     public void userInput() {
         /*
-        *  Checks if the com.androidgame.player presses the play button
+        *  Checks if the player presses the play button
         * */
 
         if(Gdx.input.justTouched()){

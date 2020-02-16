@@ -1,4 +1,8 @@
 package com.androidgame.chunk;
+/**
+ *  Reads random chunks and draws them on the screen
+ *
+ * */
 
 import com.badlogic.gdx.graphics.g2d.Batch;
 import java.util.Random;
@@ -28,7 +32,7 @@ public class ChunkGenerator {
             currentChunk = chunk.getScenario(0);
         }
         else{
-            //Generates a new random com.androidgame.chunk
+            //Generates a new random chunk
             int n = rand.nextInt(NUMBER_OF_CHUNKS - 1) + 1;
             currentChunk = chunk.getScenario(n);
         }
@@ -47,7 +51,7 @@ public class ChunkGenerator {
 
     public void render(Batch batch){
         /*
-        *  Draws the current com.androidgame.chunk on the screen
+        *  Draws the current chunk on the screen
         * */
 
         for(int i = 0; i < ROWS; i++) {

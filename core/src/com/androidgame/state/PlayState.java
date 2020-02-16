@@ -80,8 +80,8 @@ public class PlayState extends State{
             userInput();
             player.update();
 
-            //Moves a com.androidgame.chunk when it can no longer bee seen by the com.androidgame.player to be on
-            //top of the on currently displayed com.androidgame.chunk. Generates a new random com.androidgame.chunk
+            //Moves a chunk when it can no longer bee seen by the player to be on
+            //top of the on currently displayed chunk. Then loads in a new random chunk
             if (player.getYPos() > generator1.getY() + distToBottom + BLOCK_SIZE * ROWS) {
 
                 generator1.setY((BLOCK_SIZE * ROWS + generator2.getY()));
@@ -95,7 +95,7 @@ public class PlayState extends State{
         } else {
             play = false;
 
-            //Update high score if the current com.androidgame.score is greater
+            //Update high score if the current score is greater
             Preferences prefs = Gdx.app.getPreferences("game preferences");
             int highScore = prefs.getInteger("highscore");
 
@@ -103,8 +103,8 @@ public class PlayState extends State{
                 prefs.putInteger("highscore", ChunkGenerator.chunkCalculator - 2);
                 prefs.flush();
             }
-            //Waits for input from the com.androidgame.player to load the PauseState
 
+            //Waits for input from the player to load the PauseState
             if (Gdx.input.justTouched()) {
 
                 ChunkGenerator.chunkCalculator = 0;
@@ -186,6 +186,7 @@ public class PlayState extends State{
     }
 
     public void dispose() {
+
 
 
     }
